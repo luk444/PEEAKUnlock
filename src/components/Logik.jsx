@@ -10,7 +10,6 @@ const Cards = () => {
   const [singleUserPrice, setSingleUserPrice] = useState('$-');
   const [showCryptoOverlay, setShowCryptoOverlay] = useState(false);
   const [showLinkPago, setShowLinkPago] = useState(false);
-  const [singleUserLink, setSingleUserLink] = useState('');
 
   const handleRequestClick = (card) => {
     setSelectedCard(card);
@@ -24,43 +23,36 @@ const Cards = () => {
     switch (e.target.value) {
       case 'iphone1':
         setSingleUserPrice('$20');
-        setSingleUserLink('https://mpago.la/2EdLj3L');
         break;
       case 'iphone2':
         setSingleUserPrice('$25');
-        setSingleUserLink('https://mpago.la/2EdLj3L');
         break;  
       case 'iphone3':
         setSingleUserPrice('$25');
-        setSingleUserLink('https://mpago.la/2EdLj3L');
         break;
       case 'iphone4':
         setSingleUserPrice('$26');
-        setSingleUserLink('https://mpago.la/2EdLj3L');
         break;
       case 'iphone5':
         setSingleUserPrice('$30');
-        setSingleUserLink('https://mpago.la/2EdLj3L');
         break;
       case 'iphone6':
         setSingleUserPrice('$32');
-        setSingleUserLink('https://mpago.la/2EdLj3L');
         break;
       case 'iphone7':
         setSingleUserPrice('$32');
-        setSingleUserLink('https://mpago.la/2EdLj3L');
         break;  
       case 'iphone8':
         setSingleUserPrice('$26');
         break;
       case 'iphone9':
-        setSingleUserPrice('$35');
+        setSingleUserPrice('35');
         break;
       case 'iphone10':
-        setSingleUserPrice('$35');
+        setSingleUserPrice('35');
         break;
       case 'iphone11':
-        setSingleUserPrice('$$37');
+        setSingleUserPrice('$37');
         break;
       case 'iphone12':
         setSingleUserPrice('$37');
@@ -91,7 +83,6 @@ const Cards = () => {
         break;
       default:
         setSingleUserPrice('$-');
-        setSingleUserLink('');
         break;
     }
   };
@@ -109,11 +100,9 @@ const Cards = () => {
     setShowCryptoOverlay(true);
   };
 
-  const [linkPago, setLinkPago] = useState('');
   const handleLinkPagoClick = () => {
-    window.location.href = selectedCard.title === 'Single User' ? singleUserLink : linkPago;
+    setShowLinkPago(true);
   };
-  
 
   return (
     <div className='w-full py-[10rem] px-4 bg-white'>
@@ -157,18 +146,16 @@ const Cards = () => {
           </div>
           <button
             className='bg-black text-[#00df9a] w-[200px] rounded-md font-medium my-6 mx-auto px-6 py-3'
-            onClick={() => {
-             handleRequestClick({
-               title: 'Service Provider User',
+            onClick={() =>
+              handleRequestClick({
+                title: 'Service Provider User',
                 price: '$149',
                 features: ['15 Random Activation Tokens', '1 Granted User', 'Immediate Processing'],
-              });
-              setLinkPago('https://mpago.la/2EdLj3L');
-              }}
-              >
-              Request
+              })
+            }
+          >
+            Request
           </button>
-
         </div>
         <div className='w-full shadow-xl flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-300'>
           <img className='w-20 mx-auto mt-[-3rem] bg-white' src={Triple} alt='/' />
@@ -181,18 +168,10 @@ const Cards = () => {
           </div>
           <button
             className='bg-[#00df9a] w-[200px] rounded-md font-medium my-6 mx-auto px-6 py-3'
-            onClick={() => {
-              handleRequestClick({
-               title: 'Reseller User',
-                price: '$699',
-                features: ['200 Random Activation Tokens', '3 Granted User', 'Immediate Processing'],
-              });
-              setLinkPago('https://mpago.la/2EdLj3L');
-              }}
-              >
-              Request
+            onClick={() => handleRequestClick({ title: 'Reseller User', price: '$699', features: ['200 Random Activation Tokens', '3 Granted User', 'Immediate Processing'] })}
+          >
+            Request
           </button>
-
         </div>
       </div>
 
@@ -285,8 +264,8 @@ const Cards = () => {
           <div className='max-w-[800px] mx-auto p-4 bg-white rounded-lg text-center'>
             <h2 className='text-2xl font-bold text-center mb-4'>Crypto Payment</h2>
             <p className='text-center text-lg font-medium mb-4'>Make your payment to the following wallet:</p>
-            <p className='bg-[#00df9a] text-center text-4 font-medium mb-4'>43831431j15oj15300fg919hv913ofn32939u45</p>
-            <p className='text-center text-lg font-medium mb-4'>Description: Once the transaction is made, send proof and imei number of the device to be processed -{selectedCard.title}</p>
+            <p className='text-center text-4xl font-bold mb-4'>Your Wallet Address</p>
+            <p className='text-center text-lg font-medium mb-4'>Description: Payment for {selectedCard.title}</p>
             <button
               className='bg-[#00df9a] w-[200px] rounded-md font-medium mx-2 py-3'
               onClick={closeOverlay}
